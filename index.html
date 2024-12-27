@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Meine Website</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      text-align: center;
+    }
+    .navbar {
+      background-color: #333;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      padding: 10px 0;
+    }
+    .navbar a {
+      color: white;
+      padding: 14px 20px;
+      text-decoration: none;
+      text-align: center;
+      display: block;
+    }
+    .navbar a:hover {
+      background-color: #575757;
+    }
+    .schedule {
+      margin: 20px;
+    }
+    .plan-item {
+      margin: 10px 0;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigationsleiste -->
+  <div class="navbar">
+    <a href="#home">Standard Webseite</a>
+    <a href="#projects">Projekte</a>
+    <a href="#downloads">Welten Download</a>
+  </div>
+
+  <!-- Hauptinhalt -->
+  <div id="home">
+    <h1>Willkommen auf meiner Website!</h1>
+    <p>Hier findest du alle wichtigen Informationen zu meinen Projekten und Downloads.</p>
+  </div>
+
+  <div class="schedule" id="projects">
+    <h2>Projekte</h2>
+    <p>Hier kannst du mehr über meine aktuellen und abgeschlossenen Projekte erfahren.</p>
+  </div>
+
+  <div class="schedule" id="downloads">
+    <h2>Welten Download</h2>
+    <p>Lade hier meine Minecraft-Welten herunter und entdecke neue Abenteuer.</p>
+  </div>
+
+  <script>
+    // Ablaufplan-Daten (falls benötigt, kannst du es später erweitern)
+    const schedule = {
+      "2024-12-28": "Stream auf Twitch - Thema XYZ",
+      "2024-12-29": "Video-Veröffentlichung auf YouTube",
+      "2024-12-30": "Pause",
+      "2024-12-31": "Special Event: Silvester-Stream",
+    };
+
+    const today = new Date().toISOString().split('T')[0];
+    const planContainer = document.querySelector('#home');
+
+    const filteredSchedule = Object.entries(schedule).filter(([date]) => date >= today);
+
+    if (filteredSchedule.length > 0) {
+      const scheduleList = document.createElement('div');
+      filteredSchedule.forEach(([date, event]) => {
+        const planItem = document.createElement('div');
+        planItem.classList.add('plan-item');
+        planItem.textContent = `${date}: ${event}`;
+        scheduleList.appendChild(planItem);
+      });
+      planContainer.appendChild(scheduleList);
+    } else {
+      planContainer.textContent = "Kein Plan für heute oder die Zukunft verfügbar.";
+    }
+  </script>
+</body>
+</html>
